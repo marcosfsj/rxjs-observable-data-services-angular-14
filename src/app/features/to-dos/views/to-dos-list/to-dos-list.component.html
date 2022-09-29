@@ -1,0 +1,5 @@
+<div *ngIf="toDos$ | async as toDos">
+    <div *ngFor="let toDo of toDos">
+        {{toDo.title}}
+    </div>
+</div>
