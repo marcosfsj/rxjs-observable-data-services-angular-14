@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-import { ToDosService } from '../../services/to-dos.service';
+import { ToDosService } from '../to-dos.service';
 
 @Component({
   selector: 'app-to-dos-list',

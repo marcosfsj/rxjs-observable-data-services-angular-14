@@ -1,6 +1,0 @@
-<form [formGroup]="toDoSearchForm">
-    <input id="title" type="text" formControlName="title" />
-    <input id="completed" type="text" formControlName="completed" />
-</form> 
-
-<div *ngFor="let result of results | async">{{ result.title }}</div>

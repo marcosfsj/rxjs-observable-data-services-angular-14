@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, ObservableInput, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 
-import { ToDo } from '../models/ToDo.model';
+import { ToDo } from './to-do.model';
 
 @Injectable({
   providedIn: 'root'
