@@ -5,11 +5,13 @@ import { RouterModule } from '@angular/router';
 import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { ToDoCreateEditComponent } from './to-do-create-edit/to-do-create-edit.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ToDoDetailComponent } from './to-do-detail/to-do-detail.component';
 
 @NgModule({
   declarations: [
     ToDoListComponent,
-    ToDoCreateEditComponent
+    ToDoCreateEditComponent,
+    ToDoDetailComponent
   ],
   imports: [
     TodoRoutingModule,
