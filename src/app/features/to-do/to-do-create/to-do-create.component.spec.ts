@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ToDoCreateComponent } from '../to-do-create/to-do-create.component';
+import { ToDoCreateComponent } from './to-do-create.component';
 
 describe('ToDosCreateComponent', () => {
   let component: ToDoCreateComponent;
