@@ -8,8 +8,8 @@ import { SharedModule } from '../shared/shared.module';
     HomeComponent
   ],
   imports: [
-    HomeRoutingModule,
-    SharedModule
+    SharedModule,
+    HomeRoutingModule
   ],
   exports: [HomeComponent]
 })

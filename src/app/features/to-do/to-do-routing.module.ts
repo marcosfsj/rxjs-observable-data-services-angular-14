@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ToDoListComponent } from './to-do-list/to-do-list.component';
-import { ToDoCreateComponent } from './to-do-create/to-do-create.component';
+import { ToDoCreateEditComponent } from './to-do-create-edit/to-do-create-edit.component';
 
-const routes: Routes = [
+const ROUTES: Routes = [
   { path: 'list', component: ToDoListComponent },
-  { path: 'create', component: ToDoCreateComponent },
+  { path: 'create', component: ToDoCreateEditComponent },
+  { path: ':id/edit', component: ToDoCreateEditComponent },
   { path: '', redirectTo: 'list', pathMatch: 'full' }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forChild(routes),
+    RouterModule.forChild(ROUTES),
   ],
   exports: [
     RouterModule,
