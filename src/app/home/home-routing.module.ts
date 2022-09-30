@@ -4,7 +4,7 @@ import { PageNotFoundComponent } from '../shared/page-not-found/page-not-found.c
 
 const routes: Routes = [
   { path: 'dashboard', loadChildren: () => import('../features/dashboard/dashboard.module').then(m => m.DashboardModule)},
-  { path: 'to-dos', loadChildren: () => import('../features/to-dos/to-dos.module').then(m => m.ToDosModule)},
+  { path: 'to-dos', loadChildren: () => import('../features/to-do/to-do.module').then(m => m.ToDoModule)},
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];

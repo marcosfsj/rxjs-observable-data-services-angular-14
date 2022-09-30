@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ToDosListComponent } from './to-dos-list/to-dos-list.component';
-import { ToDosCreateComponent } from './to-dos-create/to-dos-create.component';
+import { ToDoListComponent } from './to-do-list/to-do-list.component';
+import { ToDoCreateComponent } from './to-do-create/to-do-create.component';
 
 const routes: Routes = [
-  { path: 'list', component: ToDosListComponent },
-  { path: 'create', component: ToDosCreateComponent },
+  { path: 'list', component: ToDoListComponent },
+  { path: 'create', component: ToDoCreateComponent },
   { path: '', redirectTo: 'list', pathMatch: 'full' }
 ];
 

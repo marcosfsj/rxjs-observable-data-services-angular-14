@@ -7,7 +7,7 @@ import { ToDo } from './to-do.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ToDosService {
+export class ToDoService {
 
   constructor(private http: HttpClient) { }
 
