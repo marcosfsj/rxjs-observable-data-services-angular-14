@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-to-do-detail',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./to-do-detail.component.scss']
 })
 export class ToDoDetailComponent implements OnInit {
+  idToEdit!: number;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.idToEdit = Number(this.route.snapshot.paramMap.get('id'));
   }
 
 }
