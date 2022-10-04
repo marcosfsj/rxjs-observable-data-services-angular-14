@@ -1,3 +1,4 @@
+import { catchError, EMPTY } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ToDoService } from '../to-do.service';
 
@@ -7,7 +8,7 @@ import { ToDoService } from '../to-do.service';
   styleUrls: ['./to-do-list.component.scss']
 })
 export class ToDoListComponent implements OnInit {
-
+  error$ = this.toDoService.getError();
   todos$ = this.toDoService.getNotCompletedTodos();
   count$ = this.toDoService.getCount();
 
@@ -17,6 +18,20 @@ export class ToDoListComponent implements OnInit {
   
   ngOnInit(): void {
     this.toDoService.init();
+  }
+
+  public addTodo(): void {
+    this.toDoService.addTodo({userId: 1,
+      id: 2,
+      title: "bla",
+      completed: false});
+  }
+
+  public removeTodo(): void {
+    this.toDoService.removeTodo({userId: 1,
+      id: 2,
+      title: "bla",
+      completed: false});
   }
 
 }

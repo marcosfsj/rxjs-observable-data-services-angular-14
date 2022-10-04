@@ -1,4 +1,4 @@
-import { BehaviorSubject, switchMap } from 'rxjs';
+import { BehaviorSubject, of, switchMap, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
@@ -9,28 +9,41 @@ import { ToDo } from './to-do.model';
   providedIn: 'root'
 })
 export class ToDoService {
-  private todos$ = new BehaviorSubject<ToDo[]>([]);
-
-  constructor(private http: HttpClient) { }
-
+  private todos$: Observable<ToDo[]>;
+  private error$: BehaviorSubject<string>;
+  private _todos$: BehaviorSubject<ToDo[]>;
+  
+  constructor(private http: HttpClient) {
+    this._todos$ = new BehaviorSubject<ToDo[]>([]);
+    this.todos$ = this._todos$.asObservable();
+    this.error$ = new BehaviorSubject<string>('');
+  }
+  
   public init(): void {
     this.http
       .get<ToDo[]>('https://jsonplaceholder.typicode.com/todos')
       .pipe(
-        catchError(this.handleError),
+        catchError(err => this.handleError(err))
       )
-      .subscribe(todos => {
-        this.todos$.next(todos);
-      });
+      .subscribe(todos => this._todos$.next(todos));
   }
 
   public addTodo(todo: ToDo): void {
-    // add todo to the list of todos and call next
+      this._todos$.next([...this._todos$.getValue(), todo]);
+      // call the backend
+  }
+
+  public removeTodo(todoToRemove: ToDo): void {
+    this._todos$.next([...this._todos$.getValue().filter(todo => todo.title != todoToRemove.title)]);
     // call the backend
   }
 
   public getTodos(): Observable<ToDo[]> {
     return this.todos$;
+  }
+
+  public getError(): Observable<string> {
+    return this.error$;
   }
 
   public getNotCompletedTodos(): Observable<ToDo[]> {
@@ -45,7 +58,7 @@ export class ToDoService {
     );
   }
 
-  handleError(err: any, caught: Observable<any>): Observable<never> {
+  handleError(err: any): Observable<never> {
     let errorMessage = '';
     if(err.error instanceof ErrorEvent) {
       errorMessage = `An error occured: ${err.error.message}`;
@@ -53,6 +66,7 @@ export class ToDoService {
       errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
     }
     console.error(errorMessage);
+    this.error$.next(errorMessage);
     return throwError(() => errorMessage);
   }
 }
