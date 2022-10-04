@@ -1,4 +1,4 @@
-import { Product } from './product.model';
+import { Product } from './to-do-custom-store.model';
 
 export interface ProductState {
     products: Product[];

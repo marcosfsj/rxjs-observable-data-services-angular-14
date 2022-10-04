@@ -1,5 +1,6 @@
-<div *ngIf="toDos$ | async as toDos">
-    <div *ngFor="let toDo of toDos">
-        {{toDo.title}}
+<div *ngIf="todos$ | async as todos">
+    <div>{{todos.length}} Open of {{count$ | async}} todos</div>
+    <div *ngFor="let todo of todos">
+        {{todo.title}} - {{todo.completed}}
     </div>
 </div>
