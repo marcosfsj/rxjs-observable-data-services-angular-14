@@ -1,7 +1,7 @@
 <button (click)="addTodo()">Add</button>
 <button (click)="removeTodo()">Remove</button>
 <div *ngIf="todos$ | async as todos">
-    <div>{{todos.length}} Open of {{count$ | async}} todos</div>
+    <div>{{todos.length}} todos</div>
     <div *ngFor="let todo of todos">
         {{todo.title}} - {{todo.completed}}
     </div>

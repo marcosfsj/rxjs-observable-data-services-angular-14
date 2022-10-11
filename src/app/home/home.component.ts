@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,  } from '@angular/core';
+import { HomeStore } from './store/home.store';
+
+interface SideNavToggle {
+  screenWidth: number;
+  collapsed: boolean;
+}
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-  constructor() { }
+  homeState = this.homeStore.state;
 
-  ngOnInit(): void {
-  }
+  constructor(private homeStore: HomeStore) { }
 
 }

@@ -1,0 +1,23 @@
+<div *ngIf="homeState$ | async as homeState">
+    <div class="sidenav" [ngClass]="homeState.collapsed ? 'sidenav-collapsed' : ''">
+        <div class="logo-container">
+            <button class="logo" (click)="toggleSidenavOpen()">A</button>
+            <div class="logo-text">Angular</div>
+            <button class="btn-close"  *ngIf="!homeState.collapsed" (click)="toggleSidenavOpen()">
+                <i class="fal fa-times close-icon"></i>
+            </button>
+        </div>
+        <ul class="sidenav-nav">
+            <li class="sidenav-nav-item" *ngFor="let navItem of navbarData">
+                <a class="sidenav-nav-link" 
+                   [routerLink]="[navItem.routeLink]"
+                   routerLinkActive="active"
+                   [routerLinkActiveOptions]="{exact: true}"
+                >
+                    <i class="sidenav-link-icon" [class]="navItem.icon"></i>
+                    <span class="sidenav-link-text">{{navItem.label}}</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 import { BehaviorSubject, of, switchMap, tap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
 
@@ -9,19 +9,23 @@ import { ToDo } from './to-do.model';
   providedIn: 'root'
 })
 export class ToDoService {
-  private todos$: Observable<ToDo[]>;
+  todos$: Observable<ToDo[]>;
+  todosNotCompleted$:  Observable<ToDo[]>;
   private error$: BehaviorSubject<string>;
   private _todos$: BehaviorSubject<ToDo[]>;
   
   constructor(private http: HttpClient) {
     this._todos$ = new BehaviorSubject<ToDo[]>([]);
     this.todos$ = this._todos$.asObservable();
+    this.todosNotCompleted$ = this.todos$.pipe(
+      map((todos) => todos.filter(todo => !todo.completed))
+    );
     this.error$ = new BehaviorSubject<string>('');
   }
   
   public init(): void {
     this.http
-      .get<ToDo[]>('https://jsonplaceholder.typicode.com/todos')
+      .get<ToDo[]>('api/todos') 
       .pipe(
         catchError(err => this.handleError(err))
       )
@@ -29,8 +33,15 @@ export class ToDoService {
   }
 
   public addTodo(todo: ToDo): void {
-      this._todos$.next([...this._todos$.getValue(), todo]);
-      // call the backend
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    // Required for the in memory web API to assign a unique id
+    todo.id = null;
+    this.http
+      .post<ToDo>('api/todos', todo, {headers}) 
+      .pipe(
+        catchError(err => this.handleError(err))
+      );
+    this._todos$.next([...this._todos$.getValue(), todo]);
   }
 
   public removeTodo(todoToRemove: ToDo): void {
@@ -38,24 +49,8 @@ export class ToDoService {
     // call the backend
   }
 
-  public getTodos(): Observable<ToDo[]> {
-    return this.todos$;
-  }
-
   public getError(): Observable<string> {
-    return this.error$;
-  }
-
-  public getNotCompletedTodos(): Observable<ToDo[]> {
-    return this.todos$.pipe(
-      map((todos) => todos.filter(todo => !todo.completed))
-    );
-  }
-
-  public getCount(): Observable<number> {
-    return this.todos$.pipe(
-      map(todos => todos.length)
-    );
+    return this.error$.asObservable();
   }
 
   handleError(err: any): Observable<never> {

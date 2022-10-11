@@ -1,6 +1,5 @@
 import { TodoRoutingModule } from './to-do-routing.module';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 
 import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { ToDoCreateEditComponent } from './to-do-create-edit/to-do-create-edit.component';
@@ -17,6 +16,6 @@ import { ToDoDetailComponent } from './to-do-detail/to-do-detail.component';
     TodoRoutingModule,
     SharedModule
   ],
-  exports: [RouterModule]
+  exports: []
 })
 export class ToDoModule { }

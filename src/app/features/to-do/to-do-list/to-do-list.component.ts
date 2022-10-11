@@ -1,16 +1,15 @@
-import { catchError, EMPTY } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ToDoService } from '../to-do.service';
 
 @Component({
   selector: 'app-to-do-list',
   templateUrl: './to-do-list.component.html',
-  styleUrls: ['./to-do-list.component.scss']
+  styleUrls: ['./to-do-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoListComponent implements OnInit {
   error$ = this.toDoService.getError();
-  todos$ = this.toDoService.getNotCompletedTodos();
-  count$ = this.toDoService.getCount();
+  todos$ = this.toDoService.todosNotCompleted$;
 
   constructor(
     private toDoService: ToDoService,

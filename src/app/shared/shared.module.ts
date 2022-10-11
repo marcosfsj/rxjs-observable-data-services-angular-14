@@ -1,34 +1,37 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TopbarComponent } from './topbar/topbar.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
-    TopbarComponent,
-    NavbarComponent,
     PageNotFoundComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    HttpClientModule,
     FormsModule, 
     ReactiveFormsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule
   ], 
   exports: [
     CommonModule,
     RouterModule,
-    HttpClientModule,
     FormsModule, 
     ReactiveFormsModule,
-    TopbarComponent,
-    NavbarComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule
   ]
 })
 export class SharedModule { }
