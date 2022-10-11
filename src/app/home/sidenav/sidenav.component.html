@@ -13,6 +13,7 @@
                    [routerLink]="[navItem.routeLink]"
                    routerLinkActive="active"
                    [routerLinkActiveOptions]="{exact: true}"
+                   (click)="updateOpenFeatureTitle(navItem.label)"
                 >
                     <i class="sidenav-link-icon" [class]="navItem.icon"></i>
                     <span class="sidenav-link-text">{{navItem.label}}</span>

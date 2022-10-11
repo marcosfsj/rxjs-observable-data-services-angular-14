@@ -1,0 +1,11 @@
+<div class="topbar" [ngClass]="{'topbar-enlarged': enlargeTopbar$ | async}">
+    <div class="title-container">
+        <div class="title-text" *ngIf="title$ | async as title">
+            {{title}}
+        </div>
+    </div>
+    <div class="tool-container">
+        <div class="tool-item">ble</div>
+        <div class="tool-item">ble</div>
+    </div>
+</div>

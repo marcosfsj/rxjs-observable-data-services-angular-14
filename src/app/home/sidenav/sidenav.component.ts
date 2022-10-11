@@ -19,4 +19,8 @@ export class SidenavComponent {
     this.homeStore.toggleSidenavOpen(window.innerWidth);
   }
 
+  updateOpenFeatureTitle(title: string): void {
+    this.homeStore.updateOpenFeatureTitle(title);
+  }
+
 }

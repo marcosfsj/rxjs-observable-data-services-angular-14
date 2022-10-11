@@ -4,12 +4,14 @@ import { HomeComponent } from './home.component';
 import { SharedModule } from '../shared/shared.module';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { BodyComponent } from './body/body.component';
+import { TopbarComponent } from './topbar/topbar.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     SidenavComponent,
-    BodyComponent
+    BodyComponent,
+    TopbarComponent
   ],
   imports: [
     HomeRoutingModule,

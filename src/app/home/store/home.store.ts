@@ -11,6 +11,10 @@ export class HomeStore extends Store<HomeState> {
     }
 
     public toggleSidenavOpen(screenWidth: number) {
-        this.setState({...this.state, collapsed: !this.state.collapsed, screenWidth });
+        this.setState({...this.state, collapsed: !this.state.collapsed });
+    }
+
+    public updateOpenFeatureTitle(title: string) {
+        this.setState({...this.state, openFeatureTitle: title });
     }
 }
