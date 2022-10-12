@@ -20,8 +20,7 @@ export class TopbarComponent {
 
   title$ = this.homeStore.state$.pipe(
     switchMap(homeState => {
-      console.log(homeState.openFeatureTitle);
-      return homeState.openFeatureTitle;
+      return of(homeState.openFeatureTitle);
     })
   );
 
